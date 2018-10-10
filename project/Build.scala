@@ -15,7 +15,7 @@ object SlickBuild extends Build {
   // NOTE: remember to change the version numbers in the sample projects
   // when changing them here
 
-  val slickVersion = "3.3.0-SNAPSHOT"
+  val slickVersion = "3.3.0-TMNOW20181009"
   val binaryCompatSlickVersion = "3.3.0" // Slick base version for binary compatibility checks
   val scalaVersions = Seq("2.11.12", "2.12.4")
 
@@ -122,10 +122,11 @@ object SlickBuild extends Build {
     ),
     logBuffered := false,
     repoKind := (if (version.value.trim.endsWith("SNAPSHOT")) "snapshots" else "releases"),
-    publishTo := (repoKind.value match {
-      case "snapshots" => Some("snapshots" at "https://oss.sonatype.org/content/repositories/snapshots")
-      case "releases" =>  Some("releases"  at "https://oss.sonatype.org/service/local/staging/deploy/maven2")
-    }),
+    publishTo := Some("Artifactory Realm" at "https://trademarknow.jfrog.io/trademarknow/trademarknow-ext"),
+    // publishTo := (repoKind.value match {
+    //   case "snapshots" => Some("snapshots" at "https://oss.sonatype.org/content/repositories/snapshots")
+    //   case "releases" =>  Some("releases"  at "https://oss.sonatype.org/service/local/staging/deploy/maven2")
+    // }),
     publishMavenStyle := true,
     publishArtifact in Test := false,
     pomIncludeRepository := { _ => false },
